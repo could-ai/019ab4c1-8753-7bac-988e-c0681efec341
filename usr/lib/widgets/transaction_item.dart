@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Assuming intl is available, if not I'll replace with custom formatter
+import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionItem extends StatelessWidget {
@@ -17,8 +17,8 @@ class TransactionItem extends StatelessWidget {
     final isExpense = transaction.type == TransactionType.expense;
     final color = isExpense ? Colors.redAccent : Colors.green;
     
-    // Simple date formatting if intl is not available, but trying to use standard patterns
-    final dateStr = "${transaction.date.day}/${transaction.date.month}/${transaction.date.year}";
+    // Using intl for proper date formatting
+    final dateStr = DateFormat.yMMMd().format(transaction.date);
 
     return Dismissible(
       key: Key(transaction.id),
